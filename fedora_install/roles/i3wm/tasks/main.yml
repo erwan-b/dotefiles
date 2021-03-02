@@ -1,0 +1,142 @@
+---
+- name: dnf copr enable tjuberg/i3-desktop for i3 gaps,rofi and polybar
+  command: dnf -y copr enable tjuberg/i3-desktop
+  changed_when: false
+  args:
+    warn: false # set warn=false to prevent warning
+  tags:
+    - i3wm
+
+- name: dnf copr enable tjuberg/i3-desktop for i3 gaps,rofi and polybar
+  command: dnf -y copr enable fuhrmann/i3-gaps
+  changed_when: false
+  args:
+    warn: false # set warn=false to prevent warning
+  tags:
+    - i3wm
+
+- name: install the i3 window manager packages
+  package:
+    name: "{{ item }}"
+    state: present
+  ignore_errors: yes
+  loop: "{{ i3wm_packages }}"
+  tags:
+    - i3wm
+
+- name: set graphic boot as default boot target
+  file: path=/etc/systemd/system/default.target src=/usr/lib/systemd/system/graphical.target state=link
+  tags:
+    - i3wm
+
+- name: disable gdm service
+  systemd:
+    name: gdm
+    enabled: no
+  tags:
+    - i3wm
+
+- name: enable lightdm service
+  systemd:
+    name: lightdm
+    enabled: yes
+  tags:
+    - i3wm
+
+- name: Creat config dir
+  file:
+    path: /home/{{ user }}/.config/i3
+    state: directory
+    recurse: true
+
+- name: link i3 to ~/.config
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/i3/configErwan
+    dest: /home/{{ user }}/.config/i3/config
+    state: link
+    force: true
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  tags:
+    - i3wm
+
+- name: Creat config dir
+  file:
+    path: /home/{{ user }}/.config/polybar
+    state: directory
+    recurse: true
+
+- name: copy polybar to ~/.config
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/polybare/config
+    dest: /home/{{ user }}/.config/polybar/config
+    state: link
+    force: true
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  tags:
+    - i3wm
+
+- name: copy polybar spotify.sh to ~/.config
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/spotify.sh
+    dest: /home/{{ user }}/.config/polybar/spotify.sh
+    state: link
+    force: true
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  tags:
+    - i3wm
+
+- name: copy polybar launch to ~/.config
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/polybare/launch.sh
+    dest: /home/{{ user }}/.config/polybar/launch.sh
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    force: true
+  tags:
+    - i3wm
+
+- name: Creat config dir
+  file:
+    path: /home/{{ user }}/.config/termite
+    state: directory
+    recurse: true
+
+
+- name: link termite theme
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/termite/config
+    dest: /home/{{ user }}/.config/termite/config
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+    force: yes
+  tags:
+    - dotfiles
+
+- name: enable suspend service
+  systemd:
+    name: suspend@{{ user }}.service
+    enabled: yes
+    state: stopped
+  args:
+    warn: false # set warn=false to prevent warning
+  tags:
+    - i3wm
+
+- name: link wallpaper to ~/.wallpaper
+  copy:
+    src: /home/{{ user }}/git/gitgit/dotfiles/Wallpaper.jpg
+    dest: /home/{{ user }}/Pictures/Wallpaper.jpg
+    state: link
+    force: true
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+  tags:
+    - i3wm
+

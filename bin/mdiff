@@ -1,0 +1,10 @@
+#!/bin/env bash
+
+$1 > mydiff
+$2 > mydiff2
+diff mydiff mydiff2
+if [ $3 == 1 ]
+then
+   rm -f mydiff
+   rm -f mydiff2
+fi

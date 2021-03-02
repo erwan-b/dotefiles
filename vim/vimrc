@@ -1,0 +1,295 @@
+set nocompatible
+filetype off
+
+" set the runtime path to include Vundle and initialize
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/syntastic'
+Plug 'justinmk/vim-syntax-extra'
+Plug 'ajh17/VimCompletesMe'
+Plug 'atelierbram/Base2Tone-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sjl/gundo.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'morhetz/gruvbox'
+Plug 'rhysd/vim-clang-format'
+
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
+Plug 'pedrohdz/vim-yaml-folds'
+Plug 'Yggdroot/indentLine'
+
+
+"colorscheme
+Plug 'KKPMW/oldbook-vim'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'sjl/badwolf'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'jpo/vim-railscasts-theme'
+Plug 'altercation/vim-colors-solarized'
+Plug 'nanotech/jellybeans.vim'
+
+" python plugin
+Plug 'vim-scripts/indentpython.vim'
+Plug 'kh3phr3n/python-syntax'
+"Plug 'nvie/vim-flake8'
+
+"
+Plug 'neovimhaskell/haskell-vim'
+Plug 'lukerandall/haskellmode-vim'
+
+Plug 'pysnow530/rfc.vim'
+
+Plug 'neomake/neomake'
+Plug 'mattn/emmet-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'OCamlPro/ocp-indent'
+Plug 'junegunn/goyo.vim'
+Plug 'slashmili/alchemist.vim'
+
+
+
+call plug#end()
+filetype plugin indent on
+
+let g:rfc_folding = 1
+
+
+"scheme
+"colorscheme gruvbox
+"colorscheme space-vim-dark
+"colorscheme nova
+colorscheme oldbook
+
+set encoding=utf-8
+
+"syntaqusic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_cpp_compiler = "gcc"
+let g:syntastic_c_compiler_options = "-W -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wcast-align -Wstrict-prototypes -Wwrite-strings -Waggregate-return -Wconversion -Wunreachable-code -Winit-self -Wreturn-type"
+let g:syntastic_cpp_compiler_options = "-W -Wall -Wextra -Wfloat-equal -Wshadow -Wpointer-arith -Wcast-align -Wstrict-prototypes -Wwrite-strings -Waggregate-return -Wconversion -Wunreachable-code -Winit-self -Wreturn-type"
+let g:syntastic_c_include_dirs = [ '../include', 'include', '../lib/include', 'lib/include', 'libmy/include', '../libmy/include.h', 'includes', 'libft/includes/', '../libft/includes/']
+let g:syntastic_cpp_include_dirs = [ '../include', 'include', '../lib/include', 'lib/include', 'libmy/include', '../libmy/include.h', 'includes', 'libft/includes/', '../libft/includes/', '../inc']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_enable_balloons = 1
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = '⚠'
+
+"Clang format
+let g:clang_format#code_style = 'llvm'
+let g:clang_format#style_options = {
+		\ "AlignConsecutiveDeclarations": "true",
+		\ "AlignEscapedNewlinesLeft": "true",
+		\ "AllowAllParametersOfDeclarationOnNextLine": "false",
+		\ "AllowShortBlocksOnASingleLine": "false",
+		\ "AllowShortFunctionsOnASingleLine": "false",
+		\ "AlwaysBreakAfterReturnType": "None",
+		\ "AlwaysBreakBeforeMultilineStrings": "false",
+		\ "AllowShortIfStatementsOnASingleLine" : "false",
+		\ "AllowShortLoopsOnASingleLine" : "false",
+		\ "BinPackArguments": "true",
+		\ "BinPackParameters": "true",
+		\ "BreakBeforeBraces": "Allman",
+		\ "BreakBeforeTernaryOperators": "false",
+		\ "ColumnLimit": 80,
+		\ "IndentWrappedFunctionNames" : "true",
+		\ "IndentWidth": 4,
+		\ "SortIncludes" : "true",
+		\ "KeepEmptyLinesAtTheStartOfBlocks": "false",
+		\ "MaxEmptyLinesToKeep": 1,
+		\ "PointerAlignment": "Right",
+		\ "PenaltyBreakBeforeFirstCallParameter": 1,
+		\ "PenaltyBreakString": 1,
+		\ "PenaltyExcessCharacter": 2,
+		\ "SpaceAfterCStyleCast": "false",
+		\ "SpaceBeforeAssignmentOperators": "true",
+		\ "SpaceBeforeParens": "ControlStatements",
+		\ "SpaceInEmptyParentheses": "false",
+		\ "SpacesInCStyleCastParentheses": "false",
+		\ "SpacesInParentheses": "false",
+		\ "SpacesInSquareBrackets": "false",
+		\ "TabWidth": 4,
+		\ "UseTab": "Always"}
+autocmd FileType c ClangFormatAutoEnable
+
+" Markdown reader
+filetype plugin on
+"Uncomment to override defaults:
+"let g:instant_markdown_slow = 1
+"let g:instant_markdown_autostart = 0
+"let g:instant_markdown_open_to_the_world = 1
+"let g:instant_markdown_allow_unsafe_content = 1
+"let g:instant_markdown_allow_external_content = 0
+"let g:instant_markdown_mathjax = 1
+"let g:instant_markdown_mermaid = 1
+"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+"let g:instant_markdown_autoscroll = 0
+"let g:instant_markdown_port = 8888
+"let g:instant_markdown_python = 1
+
+"256 colors
+set t_Co=256
+set tabstop=2
+
+"Correct indentation
+filetype plugin indent on
+set cino+=g0
+
+"Background/color
+set background=dark
+let &t_ut=''
+
+"Better search
+set incsearch
+set hlsearch
+
+"widldmenu
+set wildmenu
+
+"80 lines
+set colorcolumn=79
+
+"cursor line
+set cursorline
+
+"Show line numbers
+set number
+set relativenumber
+hi linenr ctermbg=none
+
+"Avoid usless redraw
+set lazyredraw
+
+"Syntax processing
+syntax on
+
+"Invisibles
+set listchars=tab:..,eol:¬,trail:~
+set list
+hi NonText ctermfg=241 ctermbg=none
+hi SpecialKey ctermfg=241 ctermbg=none
+
+"42 header
+nnoremap <F3> :Stdheader<CR>
+
+"f5 for NERDtree f6 gundo :o
+nnoremap <F6> :GundoToggle<CR>
+nnoremap <F5> :NERDTreeTabsToggle<CR>
+
+"powerline vim
+" Airline
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16'
+
+"remap ctrl + map for windows
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+"resize windows easyer
+:map - <C-W>-
+:map + <C-W>+
+
+"python settings
+let g:python_host_prog = '/bin/python'
+
+au BufNewFile,BufRead *.py
+			\set tabstop=4
+			\set softtabstop=4
+			\set shiftwidth=4
+			\set textwidth=79
+			\set expandtab
+			\set autoindent
+			\set fileformat=unix
+
+au BufNewFile,BufRead *.js, *.html, *.css
+			\set tabstop=2
+			\set softtabstop=2
+			\set shiftwidth=2
+
+let python_highlight_all=1
+syn match pythonBoolean "\(\W\|^\)\@<=self\(\.\)\@="
+
+"Haskell
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+let g:haskell_classic_highlighting = 1
+
+au BufEnter *.hs compiler ghc
+let g:haddock_browser="/usr/bin/firefox"
+let g:haddock_docdir="/usr/lib/ghc-8.2.2/html/"
+"let g:ghc="/usr/bin/ghc-6.6.1"
+
+" Yaml files
+let g:indentLine_char = '⦙'
+autocmd FileType yaml 
+      \set ts=2 sts=2 sw=2 expandtab foldlevelstart=20 
+
+
+"par
+:set formatprg=par
+:map <A-q> {v}!par -jw60<CR>
+:vmap <A-q> !par -jw60<CR>
+
+
+" exercism shortcut
+" let g:syntastic_vim_checkers = ['vint']
+function! s:exercism_tests()
+  if expand('%:e') == 'vim'
+    let testfile = printf('%s/%s.vader', expand('%:p:h'),
+          \ tr(expand('%:p:h:t'), '-', '_'))
+    if !filereadable(testfile)
+      echoerr 'File does not exist: '. testfile
+      return
+    endif
+    source %
+    execute 'Vader' testfile
+  else
+    let sourcefile = printf('%s/%s.vim', expand('%:p:h'),
+          \ tr(expand('%:p:h:t'), '-', '_'))
+    if !filereadable(sourcefile)
+      echoerr 'File does not exist: '. sourcefile
+      return
+    endif
+    execute 'source' sourcefile
+    Vader
+  endif
+endfunction
+
+autocmd BufRead *.{vader,vim}
+      \ command! -buffer Test call s:exercism_tests()
+
+
+function! Elixir_config ()
+	set cc=120
+	set tabstop=2
+	set softtabstop=2
+	set expandtab
+	set shiftwidth=2
+	let g:neomake_elixir_enabled_makers = ['mix']
+	let g:neomake_c_enabled_makers = ['mix']
+	autocmd! BufWritePost * Neomake
+	:xnoremap <silent> <space> mZ:call CommentToggleHash()<CR>`Z
+endfunction
+
+
+autocmd Filetype elixir exe Elixir_config()

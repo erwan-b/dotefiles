@@ -1,0 +1,244 @@
+ [settings]
+; throttle_ms = 50
+; throttle_limit = 3
+
+[colors]
+background = #999999
+background-alt = #999999
+foreground = #d0d0d0
+foreground-alt = #d0d0d0
+primary = #41924B
+secondary = #5f865f
+alert = #d68787
+
+[bar/top]
+wm-restack = true
+width = 100%
+height = 28
+clickareas = 35
+dock = false
+
+tray-background = #cc131313
+background = #cc333333
+foreground = #ccD0D0D0
+linecolor = ${bar/bottom.background}
+
+locale = fr_FR.UTF-8
+
+tray-position = right
+
+spacing = 0
+lineheight = 2
+padding-left = 2
+padding-right = 0
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = DejaVu Sans:style=Regular:size=10;0
+font-1 = MaterialIcons:size=10;0
+font-2 = FontAwesome:size=10;0
+font-3 = Wuncon Siji:size=10;0
+font-4 = Monospace:size=10;0
+
+modules-center = i3
+modules-left = disk-root cpu memory
+modules-right = battery backlight wlan
+
+[bar/bottom]
+bottom = true
+width = 100%
+height = 28
+dock = false
+
+tray-background = #cc131313
+background = #cc333333
+foreground = #ccD0D0D0
+linecolor = ${bar/top.background}
+
+spacing = 1
+lineheight = 2
+padding-left = 2
+padding-right = 5
+module-margin-left = 3
+module-margin-right = 3
+
+font-0 = DejaVu Sans:style=Regular:size=10;0
+font-1 = MaterialIcons:size=10;0
+font-2 = FontAwesome:size=10;0
+font-3 = Wuncon Siji:size=10;0
+font-4 = Monospace:size=10;0
+
+modules-left = volume
+modules-center = powermenu date
+modules-right =
+
+[module/i3]
+type = internal/i3
+
+pin-workspaces = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = ♟
+
+label-focused = %icon%
+label-focused-foreground = #ffffff
+label-focused-background = #3f3f3f
+label-focused-underline = #00FF65
+label-focused-padding = 2
+
+label-unfocused = %icon%
+label-unfocused-padding = 2
+
+label-visible = %icon%
+label-visible-underline = #555555
+label-visible-padding = 2
+
+label-urgent = %icon%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 2
+
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+label = RAM
+
+bar-used-width = 30
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = |
+bar-used-indicator-foreground = #ff
+bar-used-indicator-font = 4
+bar-used-fill = ─
+bar-used-fill-font = 4
+bar-used-empty = ─
+bar-used-empty-font = 4
+bar-used-empty-foreground = #444444
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format = <label> <bar-load>
+label = CPU
+
+bar-load-width = 30
+bar-load-foreground-0 = #aaff77
+bar-load-foreground-1 = #aaff77
+bar-load-foreground-2 = #fba922
+bar-load-foreground-3 = #ff5555
+bar-load-indicator = |
+bar-load-indicator-foreground = #ff
+bar-load-indicator-font = 4
+bar-load-fill = ─
+bar-load-fill-font = 4
+bar-load-empty = ─
+bar-load-empty-font = 4
+bar-load-empty-foreground = #444444
+
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+ping_interval = 10
+
+format-connected = <label-connected>
+;format-disconnected-underline = ${self.format-connected-underline}
+
+label-connected = %essid%
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-foreground-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected-underline = ${self.format-connected-underline}
+format-disconnected-prefix = " "
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #ffb52a
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+[module/volume]
+type = internal/volume
+speaker_mixer = Speaker
+headphone_mixer = Headphone
+;headphone_control_numid = 9
+
+format-volume = <ramp-volume> <bar-volume>
+label-muted =  ───────────── muted ─────────────
+label-muted-foreground = #66
+label-muted-font = 4
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+bar-volume-width = 30
+bar-volume-foreground-0 = #7794FF
+bar-volume-foreground-1 = #7794FF
+bar-volume-foreground-2 = #7794FF
+bar-volume-foreground-3 = #7794FF
+bar-volume-indicator = |
+bar-volume-indicator-foreground = #ff
+bar-volume-indicator-font = 4
+bar-volume-fill = ─
+bar-volume-fill-font = 4
+bar-volume-empty = ─
+bar-volume-empty-font = 4
+bar-volume-empty-foreground = #444444
+
+[module/backlight]
+type = internal/backlight
+format = <label>
+label =  %percentage%
+card = intel_backlight
+
+[module/date]
+type = internal/date
+date = %%{F#999}%a %e %b%%{F-}  %%{F#fff}%H:%M%%{F-}
+
+[module/]

@@ -1,0 +1,45 @@
+---
+- name: install the rpmfusion repo packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ common_repos }}"
+  tags:
+    - common
+
+- name: config set enable brave
+  command: dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+  args:
+    warn: false
+  tags:
+    - common
+
+- name: config set enable termite
+  command: rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+  args:
+    warn: false
+  tags: 
+    - common
+
+- name: config set enable termite
+  command: dnf copr enable -y skidnik/termite
+  args:
+    warn: false
+  tags: 
+    - common
+
+- name: All the packages I require for my workstation
+  package:
+    name:
+      - "{{ item }}"
+    state: present
+  ignore_errors: true
+  loop: "{{ common_packages }}"
+  tags:
+    - common
+
+- name: Set zsh as default shell
+  user:
+    name: "{{ user }}"
+    shell: /bin/zsh
+  become: true

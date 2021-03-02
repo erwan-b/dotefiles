@@ -1,0 +1,153 @@
+---
+
+- name: Creat ssh dir
+  file:
+    path: /home/{{ user }}/.ssh
+    state: directory
+    owner: "{{ user }}" 
+    group: "{{ user }}" 
+
+- name: Creat ssh Key
+  openssh_keypair:
+    path: /home/{{ user }}/.ssh/id_rsa
+    owner: "{{ user }}" 
+    group: "{{ user }}" 
+  tags:
+    - dotfiles
+
+- name: Add ssh config
+  command: echo -e "Host [localhost] [localhost]\nForwardAgent yes" > /home/{{ user }}/.ssh/config
+
+- name: Creat config dir
+  file:
+    path: /home/{{ user }}/git/gitgit
+    state: directory
+    recurse: true
+    owner: "{{ user }}" 
+    group: "{{ user }}" 
+
+- name: Creat config dir
+  file:
+    path: /home/{{ user }}/git/pasmongit
+    state: directory
+    recurse: true
+    owner: "{{ user }}" 
+    group: "{{ user }}" 
+
+- name: Create plugin nvim dir
+  file:
+    state: directory
+    path: /home/{{ user }}/.local/share/nvim/site/autoload/
+    recurse: true
+
+- name: install plug for nvim
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: /home/{{ user }}/.local/share/nvim/site/autoload/plug.vim
+
+- name: Creat nvim dir
+  file:
+    path: /home/{{ user }}/.config/nvim
+    state: directory
+    recurse: true
+    owner: "{{ user }}" 
+    group: "{{ user }}" 
+
+- name: link .vimrc
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/vim/vimrc
+    dest: /home/{{ user }}/.config/nvim/init.vim
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+    force: yes
+  tags:
+    - dotfiles
+
+- name: Cloning oh-my-zsh
+  git:
+    repo: 'https://github.com/robbyrussell/oh-my-zsh'
+    dest: /home/{{ user }}/.oh-my-zsh
+
+- name: link zshrc 
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/zsh/zshrc
+    dest: /home/{{ user }}/.zshrc
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+    force: yes
+  tags:
+    - dotfiles
+
+- name: link zsh theme
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/zsh/zsh_theme/my_arrow.zsh-theme   
+    dest: /home/{{ user }}/.oh-my-zsh/themes/my_arrow.zsh-theme
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+    force: yes
+  tags:
+    - dotfiles
+
+- name: link compton config
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/compton
+    dest: /home/{{ user }}/.config/compton.config
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+    force: yes
+  tags:
+    - dotfiles
+
+- name: link xinitrc
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/.xinitrc
+    dest: /home/{{ user }}/.xinitrc
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+    force: yes
+  tags:
+    - dotfiles
+
+- name: link xresources
+  file:
+    src: /home/{{ user }}/git/gitgit/dotfiles/.Xresources
+    dest: /home/{{ user }}/.Xresources
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+    force: yes
+  tags:
+    - dotfiles
+
+- name: Cloning fzf
+  git:
+    repo: 'https://github.com/junegunn/fzf.git'
+    dest: /home/{{ user }}/git/pasmongit/fzf
+
+- name: install powerline fonts
+  command: bash /home/{{ user }}/git/pasmongit/fzf/install
+  become: yes
+  become_user: "{{ user }}"
+
+
+- name: Cloning powerline fonts
+  git:
+    repo: 'https://github.com/powerline/fonts.git'
+    dest: /home/{{ user }}/git/pasmongit/fonts
+
+- name: install powerline fonts
+  command: bash /home/{{ user }}/git/pasmongit/fonts/install.sh
+  become: yes
+  become_user: "{{ user }}"
+

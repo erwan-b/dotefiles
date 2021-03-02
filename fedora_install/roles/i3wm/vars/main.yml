@@ -1,0 +1,52 @@
+_packages:
+  default:
+    - empty
+  Fedora:
+  - acpi
+  - arandr
+  - blueberry
+  - feh
+  - ffmpeg
+  - fontawesome-fonts
+  - fontawesome-fonts-web
+  - gnome-tweak-tool
+  - help2man
+  - hplip-gui
+  - i3-gaps
+  - i3-gaps-doc
+  - i3-ipc
+  - i3lock
+  - i3status
+  - intel-gpu-tools
+  - light
+  - lightdm
+  - lightdm-gtk
+  - lightdm-gtk-greeter-settings
+  - liveusb-creator
+  - network-manager-applet
+  - nnn
+  - p7zip
+  - pavucontrol
+  - polybar
+  - pygtk2
+  - python3-tkinter
+  - remmina-plugins-spice
+  - remmina-plugins-rdp
+  - rxvt-unicode-ml
+  - rofi
+  - rubygem-puppet-lint
+  - scrot
+  - simple-scan
+  - sxiv
+  - thunar
+  - vlc
+  - xautolock
+  - xbacklight
+  - xfce4-power-manager
+  - xorg-x11-apps
+  - zathura
+  - zathura-plugins-all
+  - ImageMagick
+  - wireless-tools
+
+i3wm_packages: "{{ _packages[ansible_distribution] | default(_packages['default']) }}"

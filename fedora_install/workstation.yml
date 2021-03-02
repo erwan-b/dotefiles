@@ -1,0 +1,9 @@
+- name: Setup and configure your workstation
+  hosts: localhost
+  roles:
+    - role: common
+    - role: dotfiles
+    - role: i3wm
+  become: true
+  become_user: root
+  become_method: sudo

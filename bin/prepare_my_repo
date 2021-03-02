@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+read -s -p "Enter your Epitech passwd:" sudoPw
+echo -e '\n'
+blih -u erwan.bernard@epitech.eu -t $sudoPw repository create $1 && echo -e '\n' && blih -u erwan.bernard@epitech.eu -t $sudoPw repository setacl $1 ramassage-tek r &&  echo -e '\n' && blih -u erwan.bernard@epitech.eu -t $sudoPw repository getacl $1
+git clone git@git.epitech.eu:/erwan.bernard@epitech.eu/$1
+cd $1
