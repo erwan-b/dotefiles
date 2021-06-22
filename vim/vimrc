@@ -50,6 +50,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'OCamlPro/ocp-indent'
 Plug 'junegunn/goyo.vim'
 Plug 'slashmili/alchemist.vim'
+Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 
 
