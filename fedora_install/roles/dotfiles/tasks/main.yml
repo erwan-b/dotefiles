@@ -134,8 +134,9 @@
   git:
     repo: 'https://github.com/junegunn/fzf.git'
     dest: /home/{{ user }}/git/pasmongit/fzf
+  become_user: "{{ user }}"
 
-- name: install powerline fonts
+- name: install fzf
   command: bash /home/{{ user }}/git/pasmongit/fzf/install
   become: yes
   become_user: "{{ user }}"
@@ -145,6 +146,7 @@
   git:
     repo: 'https://github.com/powerline/fonts.git'
     dest: /home/{{ user }}/git/pasmongit/fonts
+  become_user: "{{ user }}"
 
 - name: install powerline fonts
   command: bash /home/{{ user }}/git/pasmongit/fonts/install.sh

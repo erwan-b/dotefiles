@@ -123,8 +123,6 @@
     name: suspend@{{ user }}.service
     enabled: yes
     state: stopped
-  args:
-    warn: false # set warn=false to prevent warning
   tags:
     - i3wm
 

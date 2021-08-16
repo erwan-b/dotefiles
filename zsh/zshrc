@@ -4,12 +4,12 @@ export FLASK_ENV=development
 mkdir -p $WORKON_HOME
 
 VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+source /home/erwanbernard/.local/bin/virtualenvwrapper.sh
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$HOME/Bureau/pycharm/bin:$PATH
 export PATH=$HOME/git/gitgit/dotfiles/bin:$HOME/.local/bin:$PATH
-export BROWSER=google-chrome-stable
+export BROWSER=brave-browser
 
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
@@ -173,7 +173,7 @@ alias wificode="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
 alias gen="cat ~/Documents/mca.txt | grep"
 
 alias zshrc="nvim ~/.zshrc ; source ~/.zshrc"
-alias vimrc="nvim ~/.vimrc"
+alias vimrc="nvim  ~/.config/nvim/init.vim"
 
 alias update="sudo pacman -Syu"
 alias work="cd ~/git/bnblord/bnbstaff; workon bnbstaff"
