@@ -1,0 +1,16 @@
+name: Test workfows
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+  test-run-worfklow-call:
+    uses: './.github/workflows/test-workflow.yaml'
+  test-2:
+    uses: 'erwan-b/dotfiles@f1577f68eeee7975619a7216ef39e16c0f85316d'
+
