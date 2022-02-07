@@ -12,7 +12,7 @@ jobs:
   test-run-worfklow-call:
     uses: './.github/workflows/test-workflow.yaml'
   test-2:
-    uses: 'erwan-b/dotfiles/.github/workflows/test-workflow.yaml@835f9b57763a71c7936539d8c5efbea641661b07't ad
+    uses: 'erwan-b/dotfiles/.github/workflows/test-workflow.yaml@835f9b57763a71c7936539d8c5efbea641661b07'
   test-3:
     uses: 'erwan-b/dotfiles/.github/workflows/test-workflow.yaml@test/workflows'
 
