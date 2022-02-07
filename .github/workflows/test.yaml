@@ -14,5 +14,5 @@ jobs:
   test-2:
     uses: 'erwan-b/dotfiles/.github/workflows/test-workflow.yaml@f1577f68eeee7975619a7216ef39e16c0f85316d'
   test-3:
-    uses: 'erwan-b/dotfiles/.github/workflows/test-workflow.yaml@test/workflows/'
+    uses: 'erwan-b/dotfiles/.github/workflows/test-workflow.yaml@test/workflows'
 
