@@ -118,14 +118,6 @@
   tags:
     - dotfiles
 
-- name: enable suspend service
-  systemd:
-    name: suspend@{{ user }}.service
-    enabled: yes
-    state: stopped
-  tags:
-    - i3wm
-
 - name: link wallpaper to ~/.wallpaper
   copy:
     src: /home/{{ user }}/git/gitgit/dotfiles/Wallpaper.jpg

@@ -38,10 +38,10 @@ set $mod Mod1
 new_window normal
 
 #i3lock
-bindsym $mod+o exec --no-startup-id ~/git/gitgit/dotfiles/bin/i3lock.sh
+bindsym $mod+o exec ~/git/gitgit/dotfiles/bin/i3lock.sh
 
 # app laucher
-bindsym $mod+d exec --no-startup-id rofi -show drun 
+bindsym $mod+d exec rofi -show drun -dpi 200
 
 #term
 bindsym $mod+Return exec termite
@@ -76,25 +76,28 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+q kill
 
 # Back groud
-exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpaper.jpg
+exec_always feh --bg-fill ~/Pictures/Wallpaper.jpg
 
 #Multiscreen
-exec_always --no-startup-id lxrandr
+exec_always lxrandr
 
-exec_always --no-startup-id compton --config ~/.config/compton.conf
+exec_always swaymsg input type:touch events toggle disabled  # Disable touch screen
+exec_always compton --config ~/.config/compton.conf
 
 #network manager
-exec_always --no-startup-id nm-applet
+exec_always nm-applet --indicator
 
-exec_always --no-startup-id mate-settings-daemon
-exec_always --no-startup-id mate-power-manager
+exec_always blueman-applet
+
+
+exec_always mate-settings-daemon
+exec_always mate-power-manager
 
 
 # Network manager
-exec_always --no-startup-id blueman-manager
+exec_always blueman-manager
 
-# Polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 
 exec_always setxkbmap -layout us -variant intl
 exec_always setxkbmap -option caps:escape
@@ -154,12 +157,12 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Brightness fn keys
-bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -inc -5%"
-bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc +5%"
+bindsym XF86MonBrightnessDown exec "xbacklight -inc -5%"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc +5%"
 
 # Sound fn keys
-bindsym $mod+x exec --no-startup-id "amixer -q sset Master 3%+"
-bindsym $mod+z exec --no-startup-id "amixer -q sset Master 3%-"
+bindsym $mod+x exec "amixer -q sset Master 3%+"
+bindsym $mod+z exec "amixer -q sset Master 3%-"
 
 # Resize windows
 mode "resize" {
