@@ -61,7 +61,7 @@ padding-left = 2
 padding-right = 2
 module-margin = 1.5
 
-modules-left = music volume openweathermap-detail
+modules-left = music volume crypto
 modules-center = i3
 modules-right = keyboard network ssid cpu memory date time
 
@@ -197,21 +197,10 @@ type = internal/network
 interface = wlp2s0
 label-connected = %downspeed% | %upspeed%
 
-[module/temperature]
-type = internal/temperature
-interval = 5
-
-;[module/openweathermap-full]
-;type = custom/script
-;exec = weather-bar -config ~/.config/polybar/weather.config
-;interval = 600
-;label-font = 3
-
-;[module/openweathermap-detail]
-;type = custom/script
-;exec = weather-bar -config ~/.config/polybar/weather.config
-;interval = 600
-;label-font = 1
+[module/crypto]
+type = custom/script
+interval = 300
+exec = ~/.config/polybar/crypto.py
 
 [bar/float]
 
