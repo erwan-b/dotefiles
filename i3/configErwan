@@ -75,6 +75,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Kill window
 bindsym $mod+q kill
 
+# Polybar
+exec_always bash ~/.config/polybar/launch.sh
+
 # Back groud
 exec_always feh --bg-fill ~/Pictures/Wallpaper.jpg
 
