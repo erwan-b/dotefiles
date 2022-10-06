@@ -165,19 +165,14 @@ alias fr="setxkbmap fr"
 #alias make="colormake"
 alias run="./manage.py runserver"
 alias migrate="./manage.py makemigrations && ./manage.py migrate"
+alias git commit="git commit -S"
 alias update_dotfiles="cd ~/git/gitgit/dotfiles/ && git add -A && git commit -m 'update' && git push && cd -"
 
 alias backlight="sudo tee /sys/class/backlight/intel_backlight/brightness <<< 933"
 alias wificode="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
 
-alias gen="cat ~/Documents/mca.txt | grep"
-
 alias zshrc="nvim ~/.zshrc ; source ~/.zshrc"
 alias vimrc="nvim  ~/.config/nvim/init.vim"
-
-alias update="sudo pacman -Syu"
-alias work="cd ~/git/bnblord/bnbstaff; workon bnbstaff"
-alias runserver="./manage.py runserver"
 
 matrix() {
     echo -e "\e[1;40m" ;
