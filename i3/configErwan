@@ -41,7 +41,7 @@ new_window normal
 bindsym $mod+o exec ~/git/gitgit/dotfiles/bin/i3lock.sh
 
 # app laucher
-bindsym $mod+d exec rofi -show drun -dpi 200
+bindsym $mod+d exec rofi -show drun
 
 #term
 bindsym $mod+Return exec termite
@@ -80,6 +80,9 @@ exec_always bash ~/.config/polybar/launch.sh
 
 # Back groud
 exec_always feh --bg-fill ~/Pictures/Wallpaper.jpg
+
+# Polybar
+exec_always ~/.config/polybar/launch.sh
 
 #Multiscreen
 exec_always lxrandr

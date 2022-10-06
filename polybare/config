@@ -7,7 +7,7 @@ monitor = ${env:MONITOR:}
 ;------------;
 
 width = 100%
-height = 46
+height = 23
 radius = 1.0
 offset-y = 0
 offset-x = 0
@@ -36,7 +36,7 @@ tray-padding = 4
 ; FONTS ;
 ;-------;
 
-font-0 = monospace:size=16;3
+font-0 = monospace:size=11;3
 font-1 = Weather Icons:size=24;1
 
 ;--------;
@@ -56,7 +56,7 @@ padding-left = 2
 padding-right = 2
 module-margin = 1.5
 
-modules-left = music volume crypto
+modules-left = music volume
 modules-center = i3
 modules-right = keyboard network ssid cpu memory date time
 
