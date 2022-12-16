@@ -4,16 +4,12 @@
   changed_when: false
   args:
     warn: false # set warn=false to prevent warning
-  tags:
-    - i3wm
 
 - name: dnf copr enable tjuberg/i3-desktop for i3 gaps,rofi and polybar
   command: dnf -y copr enable fuhrmann/i3-gaps
   changed_when: false
   args:
     warn: false # set warn=false to prevent warning
-  tags:
-    - i3wm
 
 - name: install the i3 window manager packages
   package:
@@ -21,27 +17,19 @@
     state: present
   ignore_errors: yes
   loop: "{{ i3wm_packages }}"
-  tags:
-    - i3wm
 
 - name: set graphic boot as default boot target
   file: path=/etc/systemd/system/default.target src=/usr/lib/systemd/system/graphical.target state=link
-  tags:
-    - i3wm
 
 - name: disable gdm service
   systemd:
     name: gdm
     enabled: no
-  tags:
-    - i3wm
 
 - name: enable lightdm service
   systemd:
     name: lightdm
     enabled: yes
-  tags:
-    - i3wm
 
 - name: Creat config dir
   file:
@@ -57,8 +45,6 @@
     force: true
     owner: "{{ user }}"
     group: "{{ user }}"
-  tags:
-    - i3wm
 
 - name: Creat config dir
   file:
@@ -74,8 +60,6 @@
     force: true
     owner: "{{ user }}"
     group: "{{ user }}"
-  tags:
-    - i3wm
 
 - name: copy polybar spotify.sh to ~/.config
   file:
@@ -85,8 +69,6 @@
     force: true
     owner: "{{ user }}"
     group: "{{ user }}"
-  tags:
-    - i3wm
 
 - name: copy polybar launch to ~/.config
   file:
@@ -96,8 +78,6 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     force: true
-  tags:
-    - i3wm
 
 - name: Creat config dir
   file:
@@ -115,8 +95,6 @@
     group: "{{ user }}"
     mode: 0644
     force: yes
-  tags:
-    - dotfiles
 
 - name: link wallpaper to ~/.wallpaper
   copy:
@@ -127,6 +105,4 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0644
-  tags:
-    - i3wm
 

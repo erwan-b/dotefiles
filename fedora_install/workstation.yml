@@ -2,8 +2,11 @@
   hosts: localhost
   roles:
     - role: common
+      tags: common
     - role: dotfiles
+      tags: dotfiles
     - role: i3wm
+      tags: i3wm
   become: true
   become_user: root
   become_method: sudo

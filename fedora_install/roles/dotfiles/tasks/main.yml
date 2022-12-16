@@ -12,8 +12,6 @@
     path: /home/{{ user }}/.ssh/id_rsa
     owner: "{{ user }}" 
     group: "{{ user }}" 
-  tags:
-    - dotfiles
 
 - name: Add ssh config
   command: echo -e "Host [localhost] [localhost]\nForwardAgent yes" > /home/{{ user }}/.ssh/config
@@ -62,8 +60,6 @@
     group: "{{ user }}"
     mode: 0755
     force: yes
-  tags:
-    - dotfiles
 
 - name: Cloning oh-my-zsh
   git:
@@ -79,8 +75,6 @@
     group: "{{ user }}"
     mode: 0644
     force: yes
-  tags:
-    - dotfiles
 
 - name: link zsh theme
   file:
@@ -91,8 +85,6 @@
     group: "{{ user }}"
     mode: 0644
     force: yes
-  tags:
-    - dotfiles
 
 - name: link compton config
   file:
@@ -103,8 +95,6 @@
     group: "{{ user }}"
     mode: 0755
     force: yes
-  tags:
-    - dotfiles
 
 - name: link xinitrc
   file:
@@ -115,8 +105,6 @@
     group: "{{ user }}"
     mode: 0755
     force: yes
-  tags:
-    - dotfiles
 
 - name: link xresources
   file:
@@ -127,8 +115,6 @@
     group: "{{ user }}"
     mode: 0755
     force: yes
-  tags:
-    - dotfiles
 
 - name: Cloning fzf
   git:
