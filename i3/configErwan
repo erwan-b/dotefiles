@@ -1,7 +1,7 @@
 # Gaps
 
 for_window [class="^.*"] border pixel 3
-set $default_gaps_inner 10
+set $default_gaps_inner 5
 set $default_gaps_outer 0
 gaps inner 10
 gaps outer 0
@@ -19,7 +19,7 @@ for_window [class="Raytracer"] floating enable
 assign [class="clion"] workspace 2
 assign [class="Clion"] workspace 2
 assign [class="Chromium"] workspace 3
-assign [class="google-chrome"] workspace 3
+assign [class="brave"] workspace 3
 assign [class="Firefox"] workspace 3
 assign [class="Discord"] workspace 4
 assign [class="Vlc"] workspace 9
@@ -47,7 +47,7 @@ bindsym $mod+d exec rofi -show drun
 bindsym $mod+Return exec termite
 
 # chromium
-bindsym $mod+G exec google-chrome
+bindsym $mod+G exec brave-browser 
 
 # Toggle tilling/floating
 bindsym $mod+Shift+space floating toggle
@@ -95,6 +95,7 @@ exec_always blueman-applet
 
 exec_always mate-settings-daemon
 exec_always mate-power-manager
+exec_always /home/erwanbernard/git/gitgit/dotfiles/bin/Frame >> /dev/null
 
 
 # Network manager
