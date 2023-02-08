@@ -3,6 +3,7 @@
   roles:
     - role: common
       tags: common
+      become: true
     - role: dotfiles
       tags: dotfiles
     - role: i3wm

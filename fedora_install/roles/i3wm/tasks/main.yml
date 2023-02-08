@@ -2,21 +2,16 @@
 - name: dnf copr enable tjuberg/i3-desktop for i3 gaps,rofi and polybar
   command: dnf -y copr enable tjuberg/i3-desktop
   changed_when: false
-  args:
-    warn: false # set warn=false to prevent warning
 
 - name: dnf copr enable tjuberg/i3-desktop for i3 gaps,rofi and polybar
   command: dnf -y copr enable fuhrmann/i3-gaps
   changed_when: false
-  args:
-    warn: false # set warn=false to prevent warning
 
 - name: install the i3 window manager packages
   package:
-    name: "{{ item }}"
+    name: "{{ i3wm_packages }}"
     state: present
   ignore_errors: yes
-  loop: "{{ i3wm_packages }}"
 
 - name: set graphic boot as default boot target
   file: path=/etc/systemd/system/default.target src=/usr/lib/systemd/system/graphical.target state=link
@@ -97,7 +92,7 @@
     force: yes
 
 - name: link wallpaper to ~/.wallpaper
-  copy:
+  file:
     src: /home/{{ user }}/git/gitgit/dotfiles/Wallpaper.jpg
     dest: /home/{{ user }}/Pictures/Wallpaper.jpg
     state: link

@@ -17,9 +17,3 @@ The following software is required for this ansible playbook to work.
 Use the following command to run this playbook:
 
 `ansible-playbook -i inventory/host  -K workstation.yml -e 'user=yourusername ansible_python_interpreter=/usr/bin/python3'`
-
-##### Extras
-There is also an backup and restore playbook for your prescious data.
-Set the location and fstype of your backup disk and start
-
-`ansible-playbook -i inventory/host -K backup.yml -e user=$username -e disk=$disk -e fstype=$fstype`

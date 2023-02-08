@@ -184,7 +184,7 @@ exec = hostname -I | cut -d ' ' -f 1
 
 [module/ssid]
 type = custom/script
-exec = if [ "$(iwgetid)" = "" ]; then echo Ethernet; else echo $(iwgetid -r); fi
+exec = if [ "nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\: -f2 " = "" ]; then echo Ethernet; else echo $(nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\: -f2); fi
 click-middle = notify-send $(hostname -I | cut -d ' ' -f 1)
 
 [module/network]

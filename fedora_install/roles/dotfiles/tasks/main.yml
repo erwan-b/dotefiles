@@ -120,13 +120,13 @@
   git:
     repo: 'https://github.com/junegunn/fzf.git'
     dest: /home/{{ user }}/git/pasmongit/fzf
-  become_user: "{{ user }}"
+  become_user: "{{ user }}" 
 
 - name: install fzf
   command: bash /home/{{ user }}/git/pasmongit/fzf/install
   become: yes
-  become_user: "{{ user }}"
-
+  become_user: "{{ user }}" 
+    #when: Find a way to check fzf install
 
 - name: Cloning powerline fonts
   git:

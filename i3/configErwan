@@ -95,7 +95,7 @@ exec_always blueman-applet
 
 exec_always mate-settings-daemon
 exec_always mate-power-manager
-exec_always /home/erwanbernard/git/gitgit/dotfiles/bin/Frame >> /dev/null
+exec_always Frame >> /dev/null
 
 
 # Network manager

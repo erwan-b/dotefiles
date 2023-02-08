@@ -5,8 +5,7 @@ _repos:
     - fedora-workstation-repositories
 
 _packages:
-  default:
-    - empty
+  default: []
   Fedora:
     - '@base-x'
     - '@Common NetworkManager Submodules'
@@ -15,11 +14,9 @@ _packages:
     - '@Hardware Support'
     - '@Multimedia'
     - '@Standard'
-    - ansible
     - ansible-lint
     - dnf-plugins-core
     - htop
-#     - libselinux-python
     - lm_sensors
     - setroubleshoot-server
     - setroubleshoot
@@ -28,7 +25,6 @@ _packages:
     - python3-pip
     - elixir
     - neovim
-    - brave-browser
     - exa
     - termite
     - curl
@@ -38,7 +34,9 @@ _packages:
     - gcc
     - cmake
     - SFML-devel
-    - lpf-spotify-client
+    - xset
+    - sqlite
+    - google-chrome-stable
 
 common_repos: "{{ _repos[ansible_distribution] | default(_repos['default']) }}"
 
