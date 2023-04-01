@@ -4,6 +4,11 @@
     name: "*"
     state: latest
 
+- name: get rpmfusion gpgkeys
+  command: |
+    gpg --fetch-keys "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_date_time.date.year }}"
+    gpg --fetch-keys "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_date_time.date.year }}"
+
 - name: install the rpmfusion repo packages
   ansible.builtin.dnf:
     name: "{{ common_repos }}"
