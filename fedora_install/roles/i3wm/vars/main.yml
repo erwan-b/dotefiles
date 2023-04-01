@@ -37,6 +37,5 @@ _packages:
   - zathura
   - zathura-plugins-all
   - ImageMagick
-#  - wireless-tools
 
 i3wm_packages: "{{ _packages[ansible_distribution] | default(_packages['default']) }}"

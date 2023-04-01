@@ -3,6 +3,10 @@ _repos:
     - empty
   Fedora:
     - fedora-workstation-repositories
+    - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm
+    - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm
+
+
 
 _packages:
   default: []
@@ -37,6 +41,7 @@ _packages:
     - xset
     - sqlite
     - google-chrome-stable
+    - lpf-spotify-client
 
 common_repos: "{{ _repos[ansible_distribution] | default(_repos['default']) }}"
 
