@@ -19,7 +19,7 @@ for_window [class="Raytracer"] floating enable
 assign [class="clion"] workspace 2
 assign [class="Clion"] workspace 2
 assign [class="Chromium"] workspace 3
-assign [class="brave"] workspace 3
+assign [class="Google Chrome"] workspace 3
 assign [class="Firefox"] workspace 3
 assign [class="Discord"] workspace 4
 assign [class="Vlc"] workspace 9
@@ -47,7 +47,7 @@ bindsym $mod+d exec rofi -show drun
 bindsym $mod+Return exec termite
 
 # chromium
-bindsym $mod+G exec brave-browser 
+bindsym $mod+G exec google-chrome
 
 # Toggle tilling/floating
 bindsym $mod+Shift+space floating toggle
