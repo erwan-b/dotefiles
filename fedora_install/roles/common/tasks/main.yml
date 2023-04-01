@@ -1,13 +1,21 @@
 ---
+- debug:
+    var: ansible_date_time.date
+
 - name: update
   ansible.builtin.dnf:
     name: "*"
     state: latest
 
-- name: get rpmfusion gpgkeys
-  command: |
-    gpg --fetch-keys "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_date_time.date.year }}"
-    gpg --fetch-keys "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_date_time.date.year }}"
+- name: Importing (free) key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+
+- name: Importing (non-free) key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
 
 - name: install the rpmfusion repo packages
   ansible.builtin.dnf:
